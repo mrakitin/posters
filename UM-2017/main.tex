@@ -63,19 +63,51 @@
 
 \usepackage{booktabs} % Top and bottom rules for tables
 
+\usepackage{url} % Top and bottom rules for tables
+\usepackage{fontawesome}
+% Decorate links:
+\definecolor{linkcolor}{HTML}{003399}  % from https://gigaom.com/2009/07/09/when-it-comes-to-links-color-matters/
+\newcommand{\colorify}[1]{\textcolor{linkcolor}{#1}}
+\newcommand{\mylink}[1]{\href{#1}{\colorify{#1}}}
+\newcommand{\mylinkn}[2]{\href{#1}{\colorify{#2}}}
+\newcommand{\mylinkb}[2]{\href{#1}{#2}}
+\newcommand{\mylinkm}[1]{\href{mailto:#1?subject=Your poster at 2017 NSLS-II and CFN Users' Meeting}{\colorify{#1}}}
+\newcommand{\mylinkt}[1]{\href{tel:#1}{#1}}
+
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION 
 %----------------------------------------------------------------------------------------
 
-\title{Unnecessarily Complicated Research Title} % Poster title
+\title{Sirepo --- software framework for X-ray sources and optics simulations} % Poster title
 
-\author{John Smith, James Smith and Jane Smith} % Author(s)
+%\author{John Smith, James Smith and Jane Smith} % Author(s)
 
-\institute{Department and University Name} % Institution(s)
+%\institute{Department and University Name} % Institution(s)
+
+\author{Maksim S. Rakitin,\inst{a}* Paul Moeller,\inst{b, c} Rob Nagler,\inst{b} David L. Bruhwiler \inst{b} and Oleg Chubar\inst{a}}
+\institute{\faInstitution{} \inst{a} NSLS-II, Brookhaven National Laboratory, Upton, NY~~~\faInstitution{} \inst{b} RadiaSoft LLC, Boulder, CO~~~\faInstitution{} \inst{c} Bivio LLC, Boulder, CO}
 
 %----------------------------------------------------------------------------------------
 
 \begin{document}
+
+\addtobeamertemplate{headline}{} 
+{
+\begin{tikzpicture}[remember picture,overlay] 
+\node [shift={(+3.8cm, -3.5cm)}] at (current page.north west){\includegraphics[height=5cm]{images/Sirepo_logo_symbol.png}}; 
+\end{tikzpicture} 
+}
+
+\addtobeamertemplate{headline}{} 
+{
+\begin{tikzpicture}[remember picture,overlay] 
+\node [shift={(7.0cm, +2.5cm)}] at (current page.south west){\includegraphics[height=4.0cm]{images/bnl_logo.png}}; 
+\end{tikzpicture} 
+
+\begin{tikzpicture}[remember picture,overlay] 
+\node [shift={(-8cm, +2.0cm)}] at (current page.south east){\includegraphics[height=2.5cm]{images/radiasoft_logo.png}}; 
+\end{tikzpicture} 
+}
 
 \addtobeamertemplate{block end}{}{\vspace*{2ex}} % White space under blocks
 \addtobeamertemplate{block alerted end}{}{\vspace*{2ex}} % White space under highlighted (alert) blocks
@@ -97,36 +129,62 @@
 
 \begin{alertblock}{Objectives}
 
-Lorem ipsum dolor sit amet, consectetur, nunc tellus pulvinar tortor, commodo eleifend risus arcu sed odio:
+Sirepo allows to perform cloud-based simulations in a browser:
 \begin{itemize}
-\item Mollis dignissim, magna augue tincidunt dolor, interdum vestibulum urna
-\item Sed aliquet luctus lectus, eget aliquet leo ullamcorper consequat. Vivamus eros sem, iaculis ut euismod non, sollicitudin vel orci.
-\item Nascetur ridiculus mus.  
-\item Euismod non erat. Nam ultricies pellentesque nunc, ultrices volutpat nisl ultrices a.
+  \item Convenient and installation-free access to physical optics and accelerator codes (SRW, Elegant, WARP, \textit{etc.})
+  \item Simulation of X-ray sources (undulators, damping wigglers, \textit{etc.})
+  \item Simulation of wavefront propagation through optical system of X-ray beamlines
+  \item Sharing the simulations with colleagues and collaborators
 \end{itemize}
 
 \end{alertblock}
+
 
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Introduction}
+\begin{block}{\faInfoCircle{} Introduction}
 
-Lorem ipsum dolor \textbf{sit amet}, consectetur adipiscing elit. Sed commodo molestie porta. Sed ultrices scelerisque sapien ac commodo. Donec ut volutpat elit. Sed laoreet accumsan mattis. Integer sapien tellus, auctor ac blandit eget, sollicitudin vitae lorem. Praesent dictum tempor pulvinar. Suspendisse potenti. Sed tincidunt varius ipsum, et porta nulla suscipit et. Etiam congue bibendum felis, ac dictum augue cursus a. \textbf{Donec} magna eros, iaculis sit amet placerat quis, laoreet id est. In ut orci purus, interdum ornare nibh. Pellentesque pulvinar, nibh ac malesuada accumsan, urna nunc convallis tortor, ac vehicula nulla tellus eget nulla. Nullam lectus tortor, \textit{consequat tempor hendrerit} quis, vestibulum in diam. Maecenas sed diam augue.
+\textbf{Sirepo} --- a browser-based GUI and framework for X-ray optics simulations, built on top of Synchrotron Radiation Workshop (SRW).
 
-Lorem ipsum dolor \textbf{sit amet}, consectetur adipiscing elit. Sed commodo molestie porta. Sed ultrices scelerisque sapien ac commodo. Donec ut volutpat elit. Sed laoreet accumsan mattis. Integer sapien tellus, auctor ac blandit eget, sollicitudin vitae lorem. Praesent dictum tempor pulvinar. Suspendisse potenti. Sed tincidunt varius ipsum, et porta nulla suscipit et. Etiam congue bibendum felis, ac dictum augue cursus a.
+\vspace{1cm}
 
-This statement requires citation \cite{Smith:2012qr}.
+\textbf{SRW} --- a physical optics computer code, allowing simulation of entire experimental beamlines using the concept of a ``Virtual Beamline'' with the accurate treatment of the synchrotron radiation propagation through the X-ray optical system~\cite{Chubar1998_SRW, Chubar2002_SRW, Chubar2013_SRW}.
+\end{block}
+
+\begin{block}{\faLink{} Links}
+
+\textbf{\faGears{} Use:}
+
+\begin{itemize}
+  \item[\faGear{}]~\mylinkn{https://beta.sirepo.com/light}{beta.sirepo.com/light} (publicly available)
+  \item[\faGear{}]~\mylinkn{https://expdev.nsls2.bnl.gov/light}{expdev.nsls2.bnl.gov/light} (behind NSLS-II firewall)
+  \item[\faGear{}]~\mylinkn{http://nsls2expdev1.bnl.gov:8000/light}{nsls2expdev1.bnl.gov:8000/light} (behind NSLS-II firewall)
+\end{itemize}
+
+\textbf{\faDownload{} Download (open source):}
+
+\begin{itemize}
+  \item[\faGithub{}]~\mylinkn{https://github.com/radiasoft/sirepo}{github.com/radiasoft/sirepo}
+  \item[\faGithub{}]~\mylinkn{https://github.com/ochubar/SRW}{github.com/ochubar/SRW}
+  \item[\faShip{}]~\mylinkn{https://hub.docker.com/r/radiasoft/sirepo/tags/}{hub.docker.com/r/radiasoft}
+  \item[\faCloudDownload{}]~\mylinkn{https://atlas.hashicorp.com/radiasoft/boxes/sirepo}{atlas.hashicorp.com/radiasoft}
+\end{itemize}
 
 \end{block}
 
-%------------------------------------------------
-
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{placeholder.jpg}
-\caption{Figure caption}
-\end{figure}
+\begin{block}{\faUsers{} Users}
+\begin{itemize}
+  \item NSLS-II, LCLS, APS, ALS in the US
+  \item ELETTRA in Italy
+  \item European XFEL in Germany
+  \item ESRF and SOLEIL in France
+  \item PSI in Switzerland
+  \item Diamond Light Source in UK
+  \item LNLS in Brazil
+\end{itemize}
+\end{block}
 
 %----------------------------------------------------------------------------------------
 
@@ -144,142 +202,78 @@ This statement requires citation \cite{Smith:2012qr}.
 %	MATERIALS
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Materials}
-
-The following materials were required to complete the research:
+\begin{block}{\faServer{} Server technologies}
 
 \begin{itemize}
-\item Curabitur pellentesque dignissim
-\item Eu facilisis est tempus quis
-\item Duis porta consequat lorem
-\item Eu facilisis est tempus quis
+  \item \textbf{Python} --- widely used high-level programming language for general-purpose programming
+  \item \textbf{Flask} --- lightweight framework for web development with Python based on Werkzeug WSGI toolkit
+  \item \textbf{Nginx} --- industry standard HTTP server and a reverse proxy
+  \item \textbf{JSON (JavaScript Object Notation)} --- a lightweight data-interchange format
+  \item \textbf{Celery and RabbitMQ} --- asynchronous job queue and cluster management
+  \item \textbf{Open MPI/mpi4py} --- technology used to run scientific codes in parallel across a cluster of computational nodes on a network
 \end{itemize}
-
-The materials were prepared according to the steps outlined below:
-
-\begin{enumerate}
-\item Curabitur pellentesque dignissim
-\item Eu facilisis est tempus quis
-\item Duis porta consequat lorem
-\item Curabitur pellentesque dignissim
-\end{enumerate}
 
 \end{block}
 
 %----------------------------------------------------------------------------------------
 
 \end{column} % End of column 2.1
-
+%
 \begin{column}{\onecolwid}\vspace{-.6in} % The second column within column 2 (column 2.2)
 
 %----------------------------------------------------------------------------------------
 %	METHODS
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Methods}
+\begin{block}{\faFirefox{} \faChrome{} \faInternetExplorer{} Client}
 
-Lorem ipsum dolor \textbf{sit amet}, consectetur adipiscing elit. Sed laoreet accumsan mattis. Integer sapien tellus, auctor ac blandit eget, sollicitudin vitae lorem. Praesent dictum tempor pulvinar. Suspendisse potenti. Sed tincidunt varius ipsum, et porta nulla suscipit et. Etiam congue bibendum felis, ac dictum augue cursus a. \textbf{Donec} magna eros, iaculis sit amet placerat quis, laoreet id est. In ut orci purus, interdum ornare nibh. Pellentesque pulvinar, nibh ac malesuada accumsan, urna nunc convallis tortor, ac vehicula nulla tellus eget nulla. Nullam lectus tortor, \textit{consequat tempor hendrerit} quis, vestibulum in diam. Maecenas sed diam augue.
+\begin{itemize}
+  \item \faHtml5{} \textbf{HTML5} --- markup language used for structuring and presenting web content
+  \item \faCss3{} \textbf{CSS3} --- style sheet language used for describing the presentation of a document written in a markup language
+  \item \textbf{Bootstrap} --- HTML, CSS and JavaScript framework for developing cross-platform web
+applications
+  \item \textbf{AngularJS} --- structural framework for dynamic web apps
+  \item \textbf{D3.js} --- JavaScript graphics library which is used to generate interactive plots in the browser. D3 supports large datasets and dynamic behaviors for interaction and animation.
+\end{itemize}
 
 \end{block}
 
 %----------------------------------------------------------------------------------------
 
 \end{column} % End of column 2.2
-
+%
 \end{columns} % End of the split of column 2 - any content after this will now take up 2 columns width
 
 %----------------------------------------------------------------------------------------
 %	IMPORTANT RESULT
 %----------------------------------------------------------------------------------------
 
-\begin{alertblock}{Important Result}
-
-Lorem ipsum dolor \textbf{sit amet}, consectetur adipiscing elit. Sed commodo molestie porta. Sed ultrices scelerisque sapien ac commodo. Donec ut volutpat elit.
-
-\end{alertblock} 
-
-%----------------------------------------------------------------------------------------
-
-\begin{columns}[t,totalwidth=\twocolwid] % Split up the two columns wide column again
-
-\begin{column}{\onecolwid} % The first column within column 2 (column 2.1)
-
-%----------------------------------------------------------------------------------------
-%	MATHEMATICAL SECTION
-%----------------------------------------------------------------------------------------
-
-\begin{block}{Mathematical Section}
-
-Nam quis odio enim, in molestie libero. Vivamus cursus mi at nulla elementum sollicitudin. Nam quis odio enim, in molestie libero. Vivamus cursus mi at nulla elementum sollicitudin.
-  
-\begin{equation}
-E = mc^{2}
-\label{eqn:Einstein}
-\end{equation}
-
-Nam quis odio enim, in molestie libero. Vivamus cursus mi at nulla elementum sollicitudin. Nam quis odio enim, in molestie libero. Vivamus cursus mi at nulla elementum sollicitudin.
-
-\begin{equation}
-\cos^3 \theta =\frac{1}{4}\cos\theta+\frac{3}{4}\cos 3\theta
-\label{eq:refname}
-\end{equation}
-
-Nam quis odio enim, in molestie libero. Vivamus cursus mi at nulla elementum sollicitudin. Nam quis odio enim, in molestie libero. Vivamus cursus mi at nulla elementum sollicitudin.
-
-\begin{equation}
-\kappa =\frac{\xi}{E_{\mathrm{max}}} %\mathbb{ZNR}
-\end{equation}
-
-Nam quis odio enim, in molestie libero. Vivamus cursus mi at nulla elementum sollicitudin. Nam quis odio enim, in molestie libero. Vivamus cursus mi at nulla elementum sollicitudin.
-
-\end{block}
-
-%----------------------------------------------------------------------------------------
-
-\end{column} % End of column 2.1
-
-\begin{column}{\onecolwid} % The second column within column 2 (column 2.2)
-
-%----------------------------------------------------------------------------------------
-%	RESULTS
-%----------------------------------------------------------------------------------------
-
-\begin{block}{Results}
+\begin{block}{\faLightbulbO{} Source page}
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{placeholder.jpg}
-\caption{Figure caption}
+\includegraphics[width=0.85\linewidth]{images/source_page.png}
+% \caption{Figure caption}
 \end{figure}
 
-Nunc tempus venenatis facilisis. Curabitur suscipit consequat eros non porttitor. Sed a massa dolor, id ornare enim:
+\end{block} 
 
-Nunc tempus venenatis facilisis. Curabitur suscipit consequat eros non porttitor. Sed a massa dolor, id ornare enim:
 
-Nunc tempus venenatis facilisis. Curabitur suscipit consequat eros non porttitor. Sed a massa dolor, id ornare enim:
+\begin{block}{\faSignIn{} \faEllipsisH{} \faSignOut{} \faBullseye{} Beamline page}
 
-Nunc tempus venenatis facilisis. Curabitur suscipit consequat eros non porttitor. Sed a massa dolor, id ornare enim:
+\begin{figure}
+\includegraphics[width=0.85\linewidth]{images/toolbar_menu.png}
+% \caption{Figure caption}
+\end{figure}
 
-\begin{table}
-\vspace{2ex}
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Res. 1} & \textbf{Res. 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\caption{Table caption}
-\end{table}
+\begin{figure}
+\includegraphics[width=0.85\linewidth]{images/beamline_page.png}
+% \caption{Figure caption}
+\end{figure}
 
 \end{block}
 
+
 %----------------------------------------------------------------------------------------
-
-\end{column} % End of column 2.2
-
-\end{columns} % End of the split of column 2
 
 \end{column} % End of the second column
 
@@ -291,33 +285,9 @@ Treatment 3 & 0.0009271 & 0.296 \\
 %	CONCLUSION
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Conclusion}
+\begin{block}{\faFlag{} Conclusion}
 
-Nunc tempus venenatis facilisis. \textbf{Curabitur suscipit} consequat eros non porttitor. Sed a massa dolor, id ornare enim. Fusce quis massa dictum tortor \textbf{tincidunt mattis}. Donec quam est, lobortis quis pretium at, laoreet scelerisque lacus. Nam quis odio enim, in molestie libero. Vivamus cursus mi at \textit{nulla elementum sollicitudin}.
-
-Nunc tempus venenatis facilisis. Curabitur suscipit consequat eros non porttitor. Sed a massa dolor, id ornare enim.
-
-\end{block}
-
-%----------------------------------------------------------------------------------------
-%	ADDITIONAL INFORMATION
-%----------------------------------------------------------------------------------------
-
-\begin{block}{Additional Information}
-
-Maecenas ultricies feugiat velit non mattis. Fusce tempus arcu id ligula varius dictum. 
-\begin{itemize}
-\item Curabitur pellentesque dignissim
-\item Eu facilisis est tempus quis
-\item Duis porta consequat lorem
-\end{itemize}
-
-Maecenas ultricies feugiat velit non mattis. Fusce tempus arcu id ligula varius dictum. 
-\begin{itemize}
-\item Curabitur pellentesque dignissim
-\item Eu facilisis est tempus quis
-\item Duis porta consequat lorem
-\end{itemize}
+\textbf{Sirepo} --- a browser-based open-source framework for X-ray optics simulations. Sirepo is interfaced with a number of leading codes in the fields of X-ray source and optics simulations (SRW and Shadow3) and particle accelerators (Elegant, Hellweg and Warp). Sirepo for SRW contains predefined textbook examples as well as simulations of the wavefront propagation through the real beamlines at NSLS-II. On the Source page users can optimize the source of the synchrotron radiation. On the Beamline page one can construct a ``virtual'' beamline emulating layout of a real experimental beamline. Sirepo is empowered with the interactive widgets and dynamically accessed data from the community databases for X-ray optics~\cite{stepanov, henke}. Simulation of experimental samples is implemented in Sirepo \& SRW.
 
 \end{block}
 
@@ -325,11 +295,11 @@ Maecenas ultricies feugiat velit non mattis. Fusce tempus arcu id ligula varius 
 %	REFERENCES
 %----------------------------------------------------------------------------------------
 
-\begin{block}{References}
+\begin{block}{\faBook{} References}
 
 \nocite{*} % Insert publications even if they are not cited in the poster
 \small{\bibliographystyle{unsrt}
-\bibliography{sample}\vspace{0.75in}}
+\bibliography{sirepo} \vspace{-0.48cm}}
 
 \end{block}
 
@@ -339,9 +309,9 @@ Maecenas ultricies feugiat velit non mattis. Fusce tempus arcu id ligula varius 
 
 \setbeamercolor{block title}{fg=red,bg=white} % Change the block title color
 
-\begin{block}{Acknowledgements}
+\begin{block}{\faThumbsOUp{} Acknowledgements}
 
-\small{\rmfamily{Nam mollis tristique neque eu luctus. Suspendisse rutrum congue nisi sed convallis. Aenean id neque dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.}} \\
+\small{\rmfamily{The authors are thankful for the financial support of this work by the US DOE Office of Science, Office of Basic Energy Sciences under SBIR awards DE-SC0006284 and DE-SC0011237.}} \\
 
 \end{block}
 
@@ -352,23 +322,24 @@ Maecenas ultricies feugiat velit non mattis. Fusce tempus arcu id ligula varius 
 \setbeamercolor{block alerted title}{fg=black,bg=norange} % Change the alert block title colors
 \setbeamercolor{block alerted body}{fg=black,bg=white} % Change the alert block body colors
 
-\begin{alertblock}{Contact Information}
+\begin{alertblock}{\faSendO{} Contact Information}
 
-\begin{itemize}
-\item Web: \href{http://www.my.edu/smithlab}{http://www.my.edu/smithlab}
-\item Email: \href{mailto:john@smith.com}{john@smith.com}
-\item Phone: +1 (000) 111 1111
-\end{itemize}
+~~~\faEnvelopeO~~\mylinkm{mrakitin@bnl.gov} \\
+~~~\faGlobe~~\mylinkn{https://mrakitin.xyz}{mrakitin.xyz} \\
+~~~\faGithub~~\mylinkn{https://github.com/mrakitin}{github.com/mrakitin} \\
+~~~\faLinkedinSquare~~\mylinkn{https://www.linkedin.com/in/mrakitin}{linkedin.com/in/mrakitin} \\
+~~~\faTwitter~~\mylinkn{https://twitter.com/mrakiti}{twitter.com/mrakiti} \\
+~~~\faPhone~~\mylinkt{+1~(631)~344--8299} \\
 
 \end{alertblock}
 
-\begin{center}
-\begin{tabular}{ccc}
-\includegraphics[width=0.4\linewidth]{logo.png} & \hfill & \includegraphics[width=0.4\linewidth]{logo.png}
-\end{tabular}
-\end{center}
-
 %----------------------------------------------------------------------------------------
+
+\begin{minipage}[t]{0.48\linewidth}
+\includegraphics[height=4.0cm]{images/qr_code_beta.jpg}
+\includegraphics[height=4.0cm]{images/qr_code_github_radiasoft_sirepo.jpg}
+\end{minipage}
+
 
 \end{column} % End of the third column
 

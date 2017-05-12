@@ -7,4 +7,5 @@
 *.snm
 *.synctex.gz
 *.tex.bak
+*.bib.bak
 *.toc
