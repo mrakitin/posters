@@ -1,6 +1,6 @@
 The poster template is based on https://www.overleaf.com/read/bgrdwvwntdpb.
 
-Authorship information from [main.tex](UM-2017/main.tex) file:
+Authorship information from [UM-2017_mrakitin.tex](UM-2017_mrakitin.tex) file:
 ```latex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Jacobs Portrait Poster
